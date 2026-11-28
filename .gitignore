@@ -1,0 +1,15 @@
+﻿node_modules/
+.env
+.env.local
+dist/
+build/
+playwright-report/
+test-results/
+*.log
+.DS_Store
+
+backend/uploads/
+
+frontend-mvp-backup/
+
+frontend-mvp-backup/

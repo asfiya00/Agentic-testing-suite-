@@ -1,0 +1,16 @@
+{
+  "name": "orchestrator",
+  "version": "1.0.0",
+  "main": "pipeline.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@langchain/langgraph": "^1.7.5"
+  }
+}

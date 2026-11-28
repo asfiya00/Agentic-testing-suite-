@@ -49,11 +49,12 @@ export default function Auth({ mode = "login" }) {
     try {
       if (isSignup) {
         const { data, error } = await supabase.auth.signUp({
-          email: form.email.trim(),
-          password: form.password,
-          options: {
-            data: {
-              full_name: form.name.trim(),
+  email: form.email.trim(),
+  password: form.password,
+  options: {
+    emailRedirectTo: `${window.location.origin}/dashboard`,
+    data: {
+      full_name: form.name.trim(),
             },
           },
         });

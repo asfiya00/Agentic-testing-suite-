@@ -26,15 +26,10 @@ async function captureSafeDom(page) {
 }
 
 // Capture a screenshot safely and return its public API path
-async function captureScreenshot(page, scanId, pageIndex) {
+async function captureScreenshot(page) {
   try {
-    const safeScanId = String(scanId || "default").replace(/[^a-zA-Z0-9_-]/g, "");
-    const dir = path.join(SCREENSHOTS_ROOT, safeScanId);
-    fs.mkdirSync(dir, { recursive: true });
-
-    const filename = `page-${pageIndex}.png`;
-    await page.screenshot({ path: path.join(dir, filename), fullPage: false });
-    return `/api/screenshots/${safeScanId}/${filename}`;
+    const buffer = await page.screenshot({ fullPage: false });
+    return `data:image/png;base64,${buffer.toString("base64")}`;
   } catch {
     return undefined;
   }
@@ -133,7 +128,7 @@ export async function runExplorer(targetUrl, maxPages = 5, scanId = "default") {
           }
         }
       } catch (err) {
-        const screenshotPath = await captureScreenshot(page, scanId, pageIndex);
+        const screenshotPath = await captureScreenshot(page);
         const domSnapshot = await captureSafeDom(page);
         pageEvidence.set(url, { screenshotPath, domSnapshot });
 

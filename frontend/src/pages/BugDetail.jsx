@@ -62,7 +62,7 @@ export default function BugDetail() {
             <CardTitle>Screenshot at time of failure</CardTitle>
             {bug.screenshotPath ? (
               <img
-                src={`${API_URL}${bug.screenshotPath}`}
+                src={bug.screenshotPath.startsWith("data:") ? bug.screenshotPath : `${API_URL}${bug.screenshotPath}`}
                 alt={`Screenshot for ${bug.pageUrl}`}
                 className="w-full rounded-md border border-hairline object-cover max-h-[240px]"
               />
